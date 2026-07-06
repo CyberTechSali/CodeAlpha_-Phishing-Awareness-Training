@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Phishing Awareness Training | Formation Avancée Anti-Phishing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-employee: #10B981;
+            --primary-it: #3B82F6;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --success: #059669;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+            --bg-white: #FFFFFF;
+            --border-color: #E5E7EB;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #F0FDF4 0%, #F0F9FF 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-it);
+            color: white;
+            border-color: var(--primary-it);
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary-it);
+        }
+
+        /* Home Screen */
+        .home-screen {
+            display: block;
+        }
+
+        .home-screen.hidden {
+            display: none;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+        }
+
+        .logo-section h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary-employee), var(--primary-it));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-section p {
+            font-size: 1.2em;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .logo-section .subtitle {
+            font-size: 1.05em;
+            color: var(--text-light);
+        }
+
+        /* Selection Cards */
+        .selection-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card-selection {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+        }
+
+        .card-selection:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-selection.employee {
+            border-color: var(--primary-employee);
+        }
+
+        .card-selection.employee:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));
+        }
+
+        .card-selection.it {
+            border-color: var(--primary-it);
+        }
+
+        .card-selection.it:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.1));
+        }
+
+        .card-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .card-selection h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .card-selection .level-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card-selection.employee .level-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--primary-employee);
+        }
+
+        .card-selection.it .level-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--primary-it);
+        }
+
+        .card-selection p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .card-selection .duration {
+            font-size: 0.9em;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .card-selection .duration strong {
+            color: var(--text-dark);
+        }
+
+        /* Training Screen */
+        .training-screen {
+            display: none;
+        }
+
+        .training-screen.active {
+            display: block;
+        }
+
+        .training-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            border: none;
+            background: var(--bg-light);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: var(--border-color);
+        }
+
+        .level-indicator {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .level-indicator.employee {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--primary-employee);
+        }
+
+        .level-indicator.it {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--primary-it);
+        }
+
+        /* Progress */
+        .progress-section {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: var(--border-color);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-fill.employee {
+            background: linear-gradient(90deg, var(--primary-employee), var(--success));
+        }
+
+        .progress-fill.it {
+            background: linear-gradient(90deg, var(--primary-it), #1E40AF);
+        }
+
+        /* Content */
+        .content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 40px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .section.employee h2 {
+            color: var(--primary-employee);
+        }
+
+        .section.it h2 {
+            color: var(--primary-it);
+        }
+
+        .section h3 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-light);
+            border-left: 4px solid;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .card.warning {
+            border-left-color: var(--warning);
+            background: #FFFBEB;
+        }
+
+        .card.danger {
+            border-left-color: var(--danger);
+            background: #FEF2F2;
+        }
+
+        .card.success {
+            border-left-color: var(--success);
+            background: #ECFDF5;
+        }
+
+        .card.info {
+            border-left-color: var(--primary-it);
+            background: #EFF6FF;
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #1F2937;
+            color: #10B981;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 20px 0;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .code-block-label {
+            color: #9CA3AF;
+            margin-bottom: 10px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        /* Table */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .tech-table th,
+        .tech-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tech-table th {
+            background: var(--bg-light);
+            font-weight: 700;
+        }
+
+        .tech-table tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Quiz */
+        .quiz-question {
+            margin: 30px 0;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .quiz-question:last-child {
+            border-bottom: none;
+        }
+
+        .quiz-question h4 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary-it);
+            background: #F0F9FF;
+        }
+
+        .quiz-option input {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-it);
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            display: none;
+            font-size: 0.95em;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #ECFDF5;
+            color: #065F46;
+            border-left: 3px solid var(--success);
+        }
+
+        .feedback.incorrect {
+            background: #FEF2F2;
+            color: #7F1D1D;
+            border-left: 3px solid var(--danger);
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            color: white;
+        }
+
+        .btn-primary.employee {
+            background: var(--primary-employee);
+        }
+
+        .btn-primary.employee:hover {
+            background: var(--success);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary.it {
+            background: var(--primary-it);
+        }
+
+        .btn-primary.it:hover {
+            background: #1E40AF;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Results */
+        .results {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 3.5em;
+            font-weight: 700;
+        }
+
+        .score-circle.employee {
+            background: linear-gradient(135deg, var(--primary-employee), var(--success));
+        }
+
+        .score-circle.it {
+            background: linear-gradient(135deg, var(--primary-it), #1E40AF);
+        }
+
+        .results h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .results p {
+            font-size: 1.1em;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin: 10px 5px;
+        }
+
+        .badge.employee {
+            background: var(--primary-employee);
+        }
+
+        .badge.it {
+            background: var(--primary-it);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .logo-section h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .selection-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            font-size: 0.9em;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+            background: var(--bg-white);
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        footer strong {
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="fr" onclick="changeLanguage('fr')">Français</button>
+        <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">English</button>
+    </div>
+
+    <div class="container">
+        <!-- HOME SCREEN -->
+        <div class="home-screen" id="home-screen">
+            <div class="logo-section">
+                <h1>🛡️ Phishing Awareness</h1>
+                <p id="home-title">Formation Avancée: Protégez-vous contre le Phishing</p>
+                <p class="subtitle" id="home-subtitle">Choisissez votre niveau et apprenez à identifier les menaces</p>
+            </div>
+
+            <div class="selection-cards">
+                <!-- Employee Card -->
+                <div class="card-selection employee" onclick="startTraining('employee')">
+                    <div class="card-icon">👤</div>
+                    <h2 id="employee-title">Employé</h2>
+                    <span class="level-badge" id="employee-level">Pour tous</span>
+                    <p id="employee-desc">Langage simple et vulgarisé. Apprenez les signes d'alerte et comment vous protéger au quotidien.</p>
+                    <div class="duration" id="employee-duration"><strong>⏱️ Durée :</strong> 5-15 minutes</div>
+                </div>
+
+                <!-- IT Specialist Card -->
+                <div class="card-selection it" onclick="startTraining('it')">
+                    <div class="card-icon">⚙️</div>
+                    <h2 id="it-title">IT Spécialiste</h2>
+                    <span class="level-badge" id="it-level">Technique</span>
+                    <p id="it-desc">Approche technique avancée. Protocoles, détection, infrastructure et stratégies de défense.</p>
+                    <div class="duration" id="it-duration"><strong>⏱️ Durée :</strong> 10-25 minutes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRAINING SCREEN -->
+        <div class="training-screen" id="training-screen">
+            <!-- Back Button & Header -->
+            <div class="training-header">
+                <button class="back-button" onclick="backToHome()">← Retour</button>
+                <span class="level-indicator" id="level-indicator"></span>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div style="text-align: right; font-size: 0.9em; color: var(--text-light);">
+                    <span id="current-step">1</span> / <span id="total-steps">5</span>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content" id="content"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Author: <strong>Salma Ouchahed</strong> | GitHub: <strong>@CyberTechSali</strong></p>
+        <p style="font-size: 0.85em;">Advanced Phishing Awareness Training Platform © 2026</p>
+    </footer>
+
+    <script>
+        let currentLanguage = 'fr';
+        let currentLevel = null;
+        let currentSection = 0;
+
+        const correctAnswers = {
+            employee: { eq1: 'b', eq2: 'b', eq3: 'b', eq4: 'b', eq5: 'b' },
+            it: { iq1: 'b', iq2: 'c', iq3: 'a', iq4: 'b', iq5: 'b' }
+        };
+
+        const translations = {
+            fr: {
+                // Home
+                'home-title': 'Formation Avancée: Protégez-vous contre le Phishing',
+                'home-subtitle': 'Choisissez votre niveau et apprenez à identifier les menaces',
+                'employee-title': 'Employé',
+                'employee-level': 'Pour tous',
+                'employee-desc': 'Langage simple et vulgarisé. Apprenez les signes d\'alerte et comment vous protéger au quotidien.',
+                'employee-duration': '⏱️ Durée : 5-15 minutes',
+                'it-title': 'IT Spécialiste',
+                'it-level': 'Technique',
+                'it-desc': 'Approche technique avancée. Protocoles, détection, infrastructure et stratégies de défense.',
+                'it-duration': '⏱️ Durée : 10-25 minutes',
+            },
+            en: {
+                // Home
+                'home-title': 'Advanced Training: Protect Yourself Against Phishing',
+                'home-subtitle': 'Choose your level and learn to identify threats',
+                'employee-title': 'Employee',
+                'employee-level': 'For Everyone',
+                'employee-desc': 'Simple and non-technical language. Learn warning signs and how to protect yourself daily.',
+                'employee-duration': '⏱️ Duration: 5-15 minutes',
+                'it-title': 'IT Specialist',
+                'it-level': 'Technical',
+                'it-desc': 'Advanced technical approach. Protocols, detection, infrastructure and defense strategies.',
+                'it-duration': '⏱️ Duration: 10-25 minutes',
+            }
+        };
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+            
+            // Update translations
+            updateTranslations();
+        }
+
+        function updateTranslations() {
+            const trans = translations[currentLanguage];
+            Object.keys(trans).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = trans[key];
+                }
+            });
+        }
+
+        function startTraining(level) {
+            currentLevel = level;
+            currentSection = 0;
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('training-screen').classList.add('active');
+            
+            // Set level indicator
+            const indicator = document.getElementById('level-indicator');
+            if (level === 'employee') {
+                indicator.textContent = currentLanguage === 'fr' ? 'Niveau: Employé' : 'Level: Employee';
+                indicator.className = 'level-indicator employee';
+            } else {
+                indicator.textContent = currentLanguage === 'fr' ? 'Niveau: IT Spécialiste' : 'Level: IT Specialist';
+                indicator.className = 'level-indicator it';
+            }
+            
+            loadSection();
+        }
+
+        function backToHome() {
+            document.getElementById('home-screen').classList.remove('hidden');
+            document.getElementById('training-screen').classList.remove('active');
+            currentLevel = null;
+            currentSection = 0;
+        }
+
+        function loadSection() {
+            const content = currentLevel === 'employee' ? employeeContent : itContent;
+            const totalSections = content.length;
+            
+            document.getElementById('total-steps').textContent = totalSections;
+            
+            if (currentSection < totalSections) {
+                const section = content[currentSection];
+                const htmlContent = section[currentLanguage];
+                document.getElementById('content').innerHTML = htmlContent;
+                
+                // Update progress
+                const progress = ((currentSection + 1) / totalSections) * 100;
+                document.getElementById('progress-fill').style.width = progress + '%';
+                document.getElementById('current-step').textContent = currentSection + 1;
+            }
+            
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const content = currentLevel === 'employee' ? employeeContent : itContent;
+            const totalSections = content.length;
+            const isLastSection = currentSection === totalSections - 1;
+            const isQuizSection = isLastSection;
+            
+            // Trouver le conteneur des boutons (peut être dans button-group ou dans le quiz)
+            const container = document.querySelector('.button-group');
+            
+            if (container) {
+                container.innerHTML = '';
+                
+                const prevBtn = document.createElement('button');
+                prevBtn.className = `btn-secondary`;
+                prevBtn.textContent = currentLanguage === 'fr' ? '← Précédent' : '← Previous';
+                prevBtn.disabled = currentSection === 0;
+                prevBtn.onclick = previousSection;
+                
+                const nextBtn = document.createElement('button');
+                nextBtn.className = `btn-primary ${currentLevel}`;
+                
+                if (isQuizSection) {
+                    nextBtn.textContent = currentLanguage === 'fr' ? '✓ Vérifier le Quiz' : '✓ Check Quiz';
+                    nextBtn.onclick = () => validateQuiz();
+                } else {
+                    nextBtn.textContent = currentLanguage === 'fr' ? 'Suivant →' : 'Next →';
+                    nextBtn.onclick = nextSection;
+                }
+                
+                container.appendChild(prevBtn);
+                container.appendChild(nextBtn);
+            }
+        }
+
+        function validateQuiz() {
+            const answers = currentLevel === 'employee' ? correctAnswers.employee : correctAnswers.it;
+            const prefix = currentLevel === 'employee' ? 'eq' : 'iq';
+            
+            let allCorrect = true;
+            let score = 0;
+
+            for (let i = 1; i <= 5; i++) {
+                const questionId = prefix + i;
+                const selected = document.querySelector(`input[name="${questionId}"]:checked`);
+                const feedbackElement = document.getElementById(`feedback-${questionId}`);
+
+                if (!selected) {
+                    feedbackElement.textContent = currentLanguage === 'fr' 
+                        ? 'Veuillez répondre à cette question.' 
+                        : 'Please answer this question.';
+                    feedbackElement.className = 'feedback show incorrect';
+                    allCorrect = false;
+                } else if (selected.value === answers[questionId]) {
+                    feedbackElement.textContent = '✓ ' + (currentLanguage === 'fr' ? 'Correct!' : 'Correct!');
+                    feedbackElement.className = 'feedback show correct';
+                    score++;
+                } else {
+                    feedbackElement.textContent = '✗ ' + (currentLanguage === 'fr' 
+                        ? 'Incorrect. Relisez la section.' 
+                        : 'Incorrect. Review the section.');
+                    feedbackElement.className = 'feedback show incorrect';
+                    allCorrect = false;
+                }
+            }
+
+            if (!allCorrect) {
+                alert(currentLanguage === 'fr'
+                    ? 'Vous devez répondre correctement à toutes les questions!'
+                    : 'You must answer all questions correctly!');
+                window.scrollTo(0, 0);
+                return;
+            }
+
+            // Quiz passed - show results
+            const content = currentLevel === 'employee' ? employeeContent : itContent;
+            currentSection = content.length; // Move to results
+            showResults();
+        }
+
+        function nextSection() {
+            const content = currentLevel === 'employee' ? employeeContent : itContent;
+            if (currentSection < content.length - 1) {
+                currentSection++;
+                loadSection();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function previousSection() {
+            if (currentSection > 0) {
+                currentSection--;
+                loadSection();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function showResults() {
+            const resultHtml = currentLevel === 'employee'
+                ? getEmployeeResults()
+                : getITResults();
+            
+            document.getElementById('content').innerHTML = resultHtml;
+            updateNavigationButtons();
+        }
+
+        function getEmployeeResults() {
+            const badge = currentLanguage === 'fr'
+                ? '✓ Formation Complétée - Niveau Employé'
+                : '✓ Training Completed - Employee Level';
+            
+            return `
+                <div class="results">
+                    <div class="score-circle employee">✓</div>
+                    <h3>${currentLanguage === 'fr' ? 'Bravo! 🎉' : 'Congratulations! 🎉'}</h3>
+                    <p>${currentLanguage === 'fr' 
+                        ? 'Vous avez complété la formation anti-phishing. Vous êtes maintenant conscient des risques et prêt à protéger vos données.'
+                        : 'You have completed the anti-phishing training. You are now aware of the risks and ready to protect your data.'}</p>
+                    <div>
+                        <span class="badge employee">${badge}</span>
+                    </div>
+                    <p style="margin-top: 30px; color: var(--text-light);">
+                        ${currentLanguage === 'fr'
+                            ? '✨ Rappelez-vous: Signalez toujours les emails suspects à votre responsable IT.'
+                            : '✨ Remember: Always report suspicious emails to your IT manager.'}
+                    </p>
+                </div>
+            `;
+        }
+
+        function getITResults() {
+            const badge = currentLanguage === 'fr'
+                ? '✓ Formation Complétée - Niveau IT Spécialiste'
+                : '✓ Training Completed - IT Specialist Level';
+            
+            return `
+                <div class="results">
+                    <div class="score-circle it">✓</div>
+                    <h3>${currentLanguage === 'fr' ? 'Excellent! 🚀' : 'Excellent! 🚀'}</h3>
+                    <p>${currentLanguage === 'fr' 
+                        ? 'Vous avez complété la formation technique avancée. Vous maîtrisez maintenant les stratégies de défense et les outils de détection.'
+                        : 'You have completed the advanced technical training. You now master defense strategies and detection tools.'}</p>
+                    <div>
+                        <span class="badge it">${badge}</span>
+                    </div>
+                    <p style="margin-top: 30px; color: var(--text-light);">
+                        ${currentLanguage === 'fr'
+                            ? '🔒 Vous êtes prêt à implémenter et maintenir une infrastructure anti-phishing robuste.'
+                            : '🔒 You are ready to implement and maintain a robust anti-phishing infrastructure.'}
+                    </p>
+                </div>
+            `;
+        }
+
+        // EMPLOYEE CONTENT
+        const employeeContent = [
+            {
+                fr: `<section class="section active employee">
+                    <h2>Qu'est-ce que le phishing?</h2>
+                    <p>Le phishing est une arnaque où des criminels se font passer pour quelqu'un de confiance (votre banque, votre patron, un collègue) pour vous voler vos informations personnelles.</p>
+                    
+                    <div class="card success">
+                        <div class="card-title">
+                            <span style="font-size: 1.5em;">📊</span>
+                            Les chiffres
+                        </div>
+                        <p>90% des cybercriminalités commencent par une tentative de phishing. Mais avec une bonne formation, vous pouvez détecter et bloquer ces menaces!</p>
+                    </div>
+
+                    <h3>Pourquoi vous cibler?</h3>
+                    <p>Les criminels vous ciblent parce que vous avez accès à des informations précieuses:</p>
+                    <ul>
+                        <li>Identifiants et mots de passe</li>
+                        <li>Données bancaires</li>
+                        <li>Informations confidentielles de l'entreprise</li>
+                        <li>Données personnelles d'autres collègues</li>
+                    </ul>
+
+                    <div class="button-group"></div>
+                </section>`,
+                en: `<section class="section active employee">
+                    <h2>What is Phishing?</h2>
+                    <p>Phishing is a scam where criminals impersonate someone trustworthy (your bank, your boss, a colleague) to steal your personal information.</p>
+                    
+                    <div class="card success">
+                        <div class="card-title">
+                            <span style="font-size: 1.5em;">📊</span>
+                            The Numbers
+                        </div>
+                        <p>90% of cybercrimes start with a phishing attempt. But with good training, you can detect and block these threats!</p>
+                    </div>
+
+                    <h3>Why Target You?</h3>
+                    <p>Criminals target you because you have access to valuable information:</p>
+                    <ul>
+                        <li>Usernames and passwords</li>
+                        <li>Banking data</li>
+                        <li>Confidential company information</li>
+                        <li>Personal data of other colleagues</li>
+                    </ul>
+
+                    <div class="button-group"></div>
+                </section>`
+            },
+            {
+                fr: `<section class="section active employee">
+                    <h2>🔍 Reconnaître les emails de phishing</h2>
+                    <p>Les emails de phishing ont souvent des signes évidents. Apprenez à les repérer!</p>
+
+                    <h3>Les 5 signes d'alerte</h3>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 1. Une adresse email suspecte</div>
+                        <p>L'email semble venir de votre banque mais l'adresse est légèrement différente.</p>
+                        <p style="margin-top: 10px;"><strong>❌ Suspect:</strong> support.monbanque@secure-verification.com</p>
+                        <p><strong>✅ Vrai:</strong> support@monbanque.fr</p>
+                    </div>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 2. Demande urgente ou menace</div>
+                        <p>"Agissez maintenant!", "Votre compte sera fermé!", "Vérification urgente requise!"</p>
+                        <p style="margin-top: 10px;">Les vrais services ne demandent jamais une action urgente par email.</p>
+                    </div>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 3. Liens suspects</div>
+                        <p>Survolez le lien avec votre souris (sans cliquer). L'adresse affichée ne correspond pas?</p>
+                    </div>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 4. Erreurs d'orthographe</div>
+                        <p>Les vrais emails des entreprises sont bien vérifiés. Des erreurs = arnaque probable.</p>
+                    </div>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 5. Demande d'informations sensibles</div>
+                        <p>Aucune entreprise légitime ne demande vos mots de passe par email.</p>
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`,
+                en: `<section class="section active employee">
+                    <h2>🔍 Recognizing Phishing Emails</h2>
+                    <p>Phishing emails often have obvious signs. Learn to spot them!</p>
+
+                    <h3>The 5 Red Flags</h3>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 1. Suspicious Email Address</div>
+                        <p>The email appears to come from your bank but the address is slightly different.</p>
+                        <p style="margin-top: 10px;"><strong>❌ Suspicious:</strong> support.mybank@secure-verification.com</p>
+                        <p><strong>✅ Real:</strong> support@mybank.com</p>
+                    </div>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 2. Urgent Request or Threat</div>
+                        <p>"Act now!", "Your account will be closed!", "Urgent verification required!"</p>
+                        <p style="margin-top: 10px;">Real services never ask for urgent action by email.</p>
+                    </div>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 3. Suspicious Links</div>
+                        <p>Hover over the link with your mouse (without clicking). The displayed address doesn't match?</p>
+                    </div>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 4. Spelling Errors</div>
+                        <p>Real company emails are well-checked. Errors = likely scam.</p>
+                    </div>
+
+                    <div class="card warning">
+                        <div class="card-title">⚠️ 5. Request for Sensitive Information</div>
+                        <p>No legitimate company asks for your passwords by email.</p>
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`
+            },
+            {
+                fr: `<section class="section active employee">
+                    <h2>🌐 Identifier les faux sites web</h2>
+                    <p>Les criminels créent des sites qui ressemblent exactement aux vrais. Comment les détecter?</p>
+
+                    <h3>Vérifiez l'adresse (URL)</h3>
+                    <div class="card">
+                        <p><strong>Regardez attentivement le début de l'adresse:</strong></p>
+                        <p style="margin-top: 10px;"><strong>✅ Site sécurisé:</strong> https://www.banquefrance.fr</p>
+                        <p><strong>❌ Faux site:</strong> http://www.banquefrance-secure.ru</p>
+                    </div>
+
+                    <h3>Cherchez le cadenas 🔒</h3>
+                    <div class="card success">
+                        <p>Dans votre navigateur, cherchez le cadenas à gauche de l'adresse.</p>
+                        <ul>
+                            <li><strong>🔒 Cadenas fermé</strong> = site sécurisé (bon!)</li>
+                            <li><strong>Pas de cadenas</strong> = site non sécurisé (danger!)</li>
+                        </ul>
+                    </div>
+
+                    <h3>Conseil pratique</h3>
+                    <div class="card info">
+                        <p><strong>Quand vous visitez un site important:</strong></p>
+                        <ol>
+                            <li>Vérifiez que l'adresse commence par "https://"</li>
+                            <li>Cherchez le cadenas 🔒</li>
+                            <li>Ne cliquez JAMAIS sur un lien d'un email - tapez l'adresse directement</li>
+                        </ol>
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`,
+                en: `<section class="section active employee">
+                    <h2>🌐 Identifying Fake Websites</h2>
+                    <p>Criminals create websites that look exactly like real ones. How do you detect them?</p>
+
+                    <h3>Check the Address (URL)</h3>
+                    <div class="card">
+                        <p><strong>Look carefully at the beginning of the address:</strong></p>
+                        <p style="margin-top: 10px;"><strong>✅ Secure Site:</strong> https://www.bankofamerica.com</p>
+                        <p><strong>❌ Fake Site:</strong> http://www.bankofamerica-secure.ru</p>
+                    </div>
+
+                    <h3>Look for the Padlock 🔒</h3>
+                    <div class="card success">
+                        <p>In your browser, look for the padlock on the left of the address.</p>
+                        <ul>
+                            <li><strong>🔒 Closed Padlock</strong> = secure site (good!)</li>
+                            <li><strong>No Padlock</strong> = insecure site (danger!)</li>
+                        </ul>
+                    </div>
+
+                    <h3>Practical Tip</h3>
+                    <div class="card info">
+                        <p><strong>When visiting an important site:</strong></p>
+                        <ol>
+                            <li>Check that the address starts with "https://"</li>
+                            <li>Look for the padlock 🔒</li>
+                            <li>NEVER click a link from an email - type the address directly</li>
+                        </ol>
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`
+            },
+            {
+                fr: `<section class="section active employee">
+                    <h2>🎭 L'ingénierie sociale</h2>
+                    <p>Les criminels vous manipulent pour que vous agissiez. Voici les tactiques courantes:</p>
+
+                    <div class="card danger">
+                        <div class="card-title">😱 L'Urgence et la panique</div>
+                        <p><strong>Message:</strong> "Votre compte a une activité suspecte! Cliquez maintenant!"</p>
+                        <p style="margin-top: 10px;"><strong>Réaction:</strong> Respirez. Ne cliquez pas. Contactez directement votre banque.</p>
+                    </div>
+
+                    <div class="card danger">
+                        <div class="card-title">🤝 Usurpation d'identité (votre patron)</div>
+                        <p><strong>Message:</strong> "C'est le directeur. Peux-tu faire un virement urgent?"</p>
+                        <p style="margin-top: 10px;"><strong>Réaction:</strong> Appelez votre patron directement par téléphone pour vérifier.</p>
+                    </div>
+
+                    <div class="card danger">
+                        <div class="card-title">📎 Pièce jointe malveillante</div>
+                        <p><strong>Message:</strong> "Voici votre facture", "Document à signer"</p>
+                        <p style="margin-top: 10px;"><strong>Réaction:</strong> Ne téléchargez JAMAIS de pièces jointes d'expéditeurs inconnus.</p>
+                    </div>
+
+                    <h3>Si vous recevez un email suspect</h3>
+                    <div class="card danger">
+                        <ol>
+                            <li><strong>NE cliquez pas</strong> sur les liens</li>
+                            <li><strong>Signalez-le</strong> à votre responsable IT</li>
+                            <li><strong>Supprimez-le</strong></li>
+                        </ol>
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`,
+                en: `<section class="section active employee">
+                    <h2>🎭 Social Engineering</h2>
+                    <p>Criminals manipulate you into acting. Here are common tactics:</p>
+
+                    <div class="card danger">
+                        <div class="card-title">😱 Urgency and Panic</div>
+                        <p><strong>Message:</strong> "Your account has suspicious activity! Click now!"</p>
+                        <p style="margin-top: 10px;"><strong>Reaction:</strong> Breathe. Don't click. Contact your bank directly.</p>
+                    </div>
+
+                    <div class="card danger">
+                        <div class="card-title">🤝 Identity Impersonation (Your Boss)</div>
+                        <p><strong>Message:</strong> "It's the director. Can you make an urgent transfer?"</p>
+                        <p style="margin-top: 10px;"><strong>Reaction:</strong> Call your boss directly by phone to verify.</p>
+                    </div>
+
+                    <div class="card danger">
+                        <div class="card-title">📎 Malicious Attachment</div>
+                        <p><strong>Message:</strong> "Here's your invoice", "Document to sign"</p>
+                        <p style="margin-top: 10px;"><strong>Reaction:</strong> NEVER download attachments from unknown senders.</p>
+                    </div>
+
+                    <h3>If You Receive a Suspicious Email</h3>
+                    <div class="card danger">
+                        <ol>
+                            <li><strong>DON'T click</strong> on links</li>
+                            <li><strong>Report it</strong> to your IT manager</li>
+                            <li><strong>Delete it</strong></li>
+                        </ol>
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`
+            },
+            {
+                fr: `<section class="section active employee">
+                    <h2>🧠 Quiz de vérification - Employé</h2>
+                    <p style="margin-bottom: 30px;">Testez vos connaissances! Répondez correctement aux questions.</p>
+                    <form id="employee-quiz">
+                        <div class="quiz-question">
+                            <h4>1️⃣ Vous recevez un email de "PayPal" demandant une vérification. Que faites-vous?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq1" value="a">
+                                    Cliquez le lien pour vérifier rapidement
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq1" value="b">
+                                    Tapez "paypal.fr" dans votre navigateur et vérifiez
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq1" value="c">
+                                    Répondez avec vos identifiants
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq1"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>2️⃣ Quel est le signe d'un site web sécurisé?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq2" value="a">
+                                    L'adresse commence par "http://"
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq2" value="b">
+                                    L'adresse commence par "https://" et il y a un cadenas 🔒
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq2" value="c">
+                                    Le site a des couleurs colorées
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq2"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>3️⃣ Votre patron demande par email un virement urgent. Comment réagissez-vous?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq3" value="a">
+                                    Faites le virement immédiatement
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq3" value="b">
+                                    Appelez votre patron par téléphone pour vérifier
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq3" value="c">
+                                    Ignorez l'email
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq3"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>4️⃣ Vous recevez une pièce jointe d'un expéditeur inconnu. Que faites-vous?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq4" value="a">
+                                    Téléchargez et ouvrez la pièce jointe
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq4" value="b">
+                                    Ne la téléchargez pas et contactez l'expéditeur
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq4" value="c">
+                                    Partagez-la avec vos collègues
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq4"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>5️⃣ Quel est le meilleur moyen de protéger votre compte?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq5" value="a">
+                                    Utiliser le même mot de passe pour tous les services
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq5" value="b">
+                                    Un mot de passe fort + authentification 2FA
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq5" value="c">
+                                    Partager votre mot de passe sécurisé avec votre équipe
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq5"></div>
+                        </div>
+                    </form>
+
+                    <div class="button-group" id="employee-quiz-buttons"></div>
+                </section>`,
+                en: `<section class="section active employee">
+                    <h2>🧠 Employee Quiz - Knowledge Check</h2>
+                    <p style="margin-bottom: 30px;">Test your knowledge! Answer the questions correctly.</p>
+                    <form id="employee-quiz">
+                        <div class="quiz-question">
+                            <h4>1️⃣ You receive an email from "PayPal" asking for verification. What do you do?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq1" value="a">
+                                    Click the link to verify quickly
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq1" value="b">
+                                    Type "paypal.com" in your browser and verify
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq1" value="c">
+                                    Reply with your credentials
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq1"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>2️⃣ What is a sign of a secure website?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq2" value="a">
+                                    The address starts with "http://"
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq2" value="b">
+                                    The address starts with "https://" and there's a padlock 🔒
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq2" value="c">
+                                    The site has colorful colors
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq2"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>3️⃣ Your boss asks by email for an urgent transfer. How do you react?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq3" value="a">
+                                    Make the transfer immediately
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq3" value="b">
+                                    Call your boss by phone to verify
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq3" value="c">
+                                    Ignore the email
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq3"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>4️⃣ You receive an attachment from an unknown sender. What do you do?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq4" value="a">
+                                    Download and open the attachment
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq4" value="b">
+                                    Don't download it and contact the sender
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq4" value="c">
+                                    Share it with your colleagues
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq4"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>5️⃣ What is the best way to protect your account?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq5" value="a">
+                                    Use the same password for all services
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq5" value="b">
+                                    A strong password + 2FA authentication
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="eq5" value="c">
+                                    Share your secure password with your team
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-eq5"></div>
+                        </div>
+                    </form>
+
+                    <div class="button-group" id="employee-quiz-buttons"></div>
+                </section>`
+            }
+        ];
+
+        // IT CONTENT
+        const itContent = [
+            {
+                fr: `<section class="section active it">
+                    <h2>Architecture anti-phishing</h2>
+                    <p>Les attaques de phishing exploitent la chaîne de courrier électronique. Une défense robuste nécessite plusieurs couches.</p>
+
+                    <h3>Couches de défense</h3>
+                    <div class="card">
+                        <p><strong>1. Authentification des expéditeurs (SPF, DKIM, DMARC)</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li><strong>SPF (Sender Policy Framework):</strong> Vérifie que l'IP envoie à partir de serveurs autorisés</li>
+                            <li><strong>DKIM (DomainKeys Identified Mail):</strong> Signature cryptographique du message</li>
+                            <li><strong>DMARC (Domain-based Message Authentication, Reporting & Conformance):</strong> Politique de vérification SPF/DKIM + rapport</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <p><strong>2. Scanning du contenu</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>Détection de malware avec ClamAV ou Kaspersky</li>
+                            <li>Analyse de URLs avec URLhaus, PhishTank</li>
+                            <li>Analyse de contenu pour patterns de phishing</li>
+                        </ul>
+                    </div>
+
+                    <h3>Implémentation Postfix/Dovecot</h3>
+                    <div class="code-block">
+                        <div class="code-block-label">Configuration SPF dans DNS</div>
+v=spf1 ip4:192.168.1.1 include:_spf.google.com ~all
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-block-label">Configuration DMARC dans DNS</div>
+v=DMARC1; p=reject; rua=mailto:admin@example.com; ruf=mailto:abuse@example.com
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`,
+                en: `<section class="section active it">
+                    <h2>Anti-phishing Architecture</h2>
+                    <p>Phishing attacks exploit the email chain. Robust defense requires multiple layers.</p>
+
+                    <h3>Defense Layers</h3>
+                    <div class="card">
+                        <p><strong>1. Sender Authentication (SPF, DKIM, DMARC)</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li><strong>SPF (Sender Policy Framework):</strong> Verifies IP sends from authorized servers</li>
+                            <li><strong>DKIM (DomainKeys Identified Mail):</strong> Cryptographic signature of message</li>
+                            <li><strong>DMARC (Domain-based Message Authentication, Reporting & Conformance):</strong> SPF/DKIM verification policy + reporting</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <p><strong>2. Content Scanning</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>Malware detection with ClamAV or Kaspersky</li>
+                            <li>URL analysis with URLhaus, PhishTank</li>
+                            <li>Content analysis for phishing patterns</li>
+                        </ul>
+                    </div>
+
+                    <h3>Postfix/Dovecot Implementation</h3>
+                    <div class="code-block">
+                        <div class="code-block-label">SPF Configuration in DNS</div>
+v=spf1 ip4:192.168.1.1 include:_spf.google.com ~all
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-block-label">DMARC Configuration in DNS</div>
+v=DMARC1; p=reject; rua=mailto:admin@example.com; ruf=mailto:abuse@example.com
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`
+            },
+            {
+                fr: `<section class="section active it">
+                    <h2>Analyse technique des vecteurs d'attaque</h2>
+
+                    <h3>1. Header Spoofing</h3>
+                    <div class="card info">
+                        <p>Les attaquants modifient les headers SMTP (From, Reply-To) sans modifier l'enveloppe SMTP.</p>
+                        <p style="margin-top: 10px;"><strong>Détection:</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>Vérifier que envelope-from = From header</li>
+                            <li>DKIM signature fails = spoofed domain</li>
+                            <li>SPF fail sur Return-Path</li>
+                        </ul>
+                    </div>
+
+                    <h3>2. Typosquatting et lookalike domains</h3>
+                    <div class="card info">
+                        <p>Enregistrement de domaines similaires (amazon.cm, goog1e.com)</p>
+                        <p style="margin-top: 10px;"><strong>Mitigation:</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>WHOIS monitoring et alerting</li>
+                            <li>Machine learning sur les similarités de domaine (Levenshtein distance)</li>
+                            <li>Signature des certificats SSL (CT logs)</li>
+                        </ul>
+                    </div>
+
+                    <h3>3. URL Obfuscation</h3>
+                    <div class="code-block">
+                        <div class="code-block-label">Techniques courantes</div>
+http://192.168.1.1@evil.com/  (@ redirection)
+http://paypal.com.evil.com     (subdomain)
+http://paypal%2ecom.evil.com   (URL encoding)
+http://0xc0a80101/             (IP décimal)
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`,
+                en: `<section class="section active it">
+                    <h2>Technical Analysis of Attack Vectors</h2>
+
+                    <h3>1. Header Spoofing</h3>
+                    <div class="card info">
+                        <p>Attackers modify SMTP headers (From, Reply-To) without modifying SMTP envelope.</p>
+                        <p style="margin-top: 10px;"><strong>Detection:</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>Verify envelope-from = From header</li>
+                            <li>DKIM signature fails = spoofed domain</li>
+                            <li>SPF fail on Return-Path</li>
+                        </ul>
+                    </div>
+
+                    <h3>2. Typosquatting and Lookalike Domains</h3>
+                    <div class="card info">
+                        <p>Registration of similar domains (amazon.cm, goog1e.com)</p>
+                        <p style="margin-top: 10px;"><strong>Mitigation:</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>WHOIS monitoring and alerting</li>
+                            <li>Machine learning on domain similarities (Levenshtein distance)</li>
+                            <li>SSL certificate signatures (CT logs)</li>
+                        </ul>
+                    </div>
+
+                    <h3>3. URL Obfuscation</h3>
+                    <div class="code-block">
+                        <div class="code-block-label">Common Techniques</div>
+http://192.168.1.1@evil.com/  (@ redirection)
+http://paypal.com.evil.com     (subdomain)
+http://paypal%2ecom.evil.com   (URL encoding)
+http://0xc0a80101/             (decimal IP)
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`
+            },
+            {
+                fr: `<section class="section active it">
+                    <h2>Implémentation des solutions anti-phishing</h2>
+
+                    <h3>Stack de sécurité recommandée</h3>
+                    <table class="tech-table">
+                        <tr>
+                            <th>Composant</th>
+                            <th>Outils Open Source</th>
+                            <th>Solutions Commerciales</th>
+                        </tr>
+                        <tr>
+                            <td>Gateway Email</td>
+                            <td>Postfix, Exim, Haraka</td>
+                            <td>Proofpoint, Mimecast</td>
+                        </tr>
+                        <tr>
+                            <td>Filtering</td>
+                            <td>SpamAssassin, rspamd</td>
+                            <td>Cisco, Barracuda</td>
+                        </tr>
+                        <tr>
+                            <td>URL Analysis</td>
+                            <td>URLhaus API, PhishTank</td>
+                            <td>Zscaler, Menlo Security</td>
+                        </tr>
+                        <tr>
+                            <td>Malware Detection</td>
+                            <td>ClamAV, Yara</td>
+                            <td>Kaspersky, Avast</td>
+                        </tr>
+                    </table>
+
+                    <h3>Configuration rspamd</h3>
+                    <div class="code-block">
+                        <div class="code-block-label">règles.conf - Détection de phishing</div>
+phishing {
+  symbol = PHISHING;
+  openphish = true;
+  phishtank = true;
+  bayes = true;
+  dmarc = true;
+  spf = true;
+}
+
+actions {
+  reject = 15;
+  add_header = 6;
+}
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`,
+                en: `<section class="section active it">
+                    <h2>Implementation of Anti-phishing Solutions</h2>
+
+                    <h3>Recommended Security Stack</h3>
+                    <table class="tech-table">
+                        <tr>
+                            <th>Component</th>
+                            <th>Open Source Tools</th>
+                            <th>Commercial Solutions</th>
+                        </tr>
+                        <tr>
+                            <td>Email Gateway</td>
+                            <td>Postfix, Exim, Haraka</td>
+                            <td>Proofpoint, Mimecast</td>
+                        </tr>
+                        <tr>
+                            <td>Filtering</td>
+                            <td>SpamAssassin, rspamd</td>
+                            <td>Cisco, Barracuda</td>
+                        </tr>
+                        <tr>
+                            <td>URL Analysis</td>
+                            <td>URLhaus API, PhishTank</td>
+                            <td>Zscaler, Menlo Security</td>
+                        </tr>
+                        <tr>
+                            <td>Malware Detection</td>
+                            <td>ClamAV, Yara</td>
+                            <td>Kaspersky, Avast</td>
+                        </tr>
+                    </table>
+
+                    <h3>rspamd Configuration</h3>
+                    <div class="code-block">
+                        <div class="code-block-label">règles.conf - Phishing Detection</div>
+phishing {
+  symbol = PHISHING;
+  openphish = true;
+  phishtank = true;
+  bayes = true;
+  dmarc = true;
+  spf = true;
+}
+
+actions {
+  reject = 15;
+  add_header = 6;
+}
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`
+            },
+            {
+                fr: `<section class="section active it">
+                    <h2>Monitoring et Incident Response</h2>
+
+                    <h3>Métriques de suivi</h3>
+                    <div class="card info">
+                        <p><strong>KPIs critiques:</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li><strong>False Positive Rate:</strong> % d'emails légitimes bloqués (cible: &lt;0.1%)</li>
+                            <li><strong>Detection Rate:</strong> % de phishing détecté (cible: &gt;95%)</li>
+                            <li><strong>User Report Rate:</strong> % d'emails rapportés par utilisateurs</li>
+                            <li><strong>MTTR (Mean Time To Respond):</strong> Temps moyen de réponse aux incidents</li>
+                        </ul>
+                    </div>
+
+                    <h3>Forensics des emails</h3>
+                    <div class="code-block">
+                        <div class="code-block-label">Analyse d'en-têtes</div>
+From: attacker@spoofed.com
+Return-Path: &lt;attacker@real-server.com&gt;
+SPF-Result: fail
+DKIM-Result: fail
+DMARC-Result: fail
+X-Phishing-Score: 8.5/10
+X-MalwareScan: detected (Trojan.Gen)
+                    </div>
+
+                    <h3>Escalade d'incident</h3>
+                    <div class="card danger">
+                        <p><strong>Si détection de campagne de phishing:</strong></p>
+                        <ol style="margin-top: 10px;">
+                            <li>Isoler les emails infectés (quarantine)</li>
+                            <li>Notifier les victimes potentielles</li>
+                            <li>Analyser les logs de clicks</li>
+                            <li>Signaler aux autorités (CNIL, police cyber)</li>
+                            <li>Mettre à jour les règles de détection</li>
+                        </ol>
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`,
+                en: `<section class="section active it">
+                    <h2>Monitoring and Incident Response</h2>
+
+                    <h3>Tracking Metrics</h3>
+                    <div class="card info">
+                        <p><strong>Critical KPIs:</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li><strong>False Positive Rate:</strong> % of legitimate emails blocked (target: &lt;0.1%)</li>
+                            <li><strong>Detection Rate:</strong> % of phishing detected (target: &gt;95%)</li>
+                            <li><strong>User Report Rate:</strong> % of emails reported by users</li>
+                            <li><strong>MTTR (Mean Time To Respond):</strong> Average incident response time</li>
+                        </ul>
+                    </div>
+
+                    <h3>Email Forensics</h3>
+                    <div class="code-block">
+                        <div class="code-block-label">Header Analysis</div>
+From: attacker@spoofed.com
+Return-Path: &lt;attacker@real-server.com&gt;
+SPF-Result: fail
+DKIM-Result: fail
+DMARC-Result: fail
+X-Phishing-Score: 8.5/10
+X-MalwareScan: detected (Trojan.Gen)
+                    </div>
+
+                    <h3>Incident Escalation</h3>
+                    <div class="card danger">
+                        <p><strong>If phishing campaign detected:</strong></p>
+                        <ol style="margin-top: 10px;">
+                            <li>Isolate infected emails (quarantine)</li>
+                            <li>Notify potential victims</li>
+                            <li>Analyze click logs</li>
+                            <li>Report to authorities (CNIL, cyber police)</li>
+                            <li>Update detection rules</li>
+                        </ol>
+                    </div>
+
+                    <div class="button-group"></div>
+                </section>`
+            },
+            {
+                fr: `<section class="section active it">
+                    <h2>🧠 Quiz de vérification - IT Spécialiste</h2>
+                    <p style="margin-bottom: 30px;">Testez vos connaissances techniques! Répondez correctement aux questions.</p>
+                    <form id="it-quiz">
+                        <div class="quiz-question">
+                            <h4>1️⃣ Quel protocole vérifie que l'IP du serveur est autorisée à envoyer les emails?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq1" value="a">
+                                    DKIM
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq1" value="b">
+                                    SPF (Sender Policy Framework)
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq1" value="c">
+                                    DMARC
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq1"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>2️⃣ Quelle politique DMARC rejette les emails qui échouent SPF et DKIM?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq2" value="a">
+                                    p=none
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq2" value="b">
+                                    p=quarantine
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq2" value="c">
+                                    p=reject
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq2"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>3️⃣ Quel outil open-source est recommandé pour le filtering des emails?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq3" value="a">
+                                    rspamd ou SpamAssassin
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq3" value="b">
+                                    Postfix (MTA seulement)
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq3" value="c">
+                                    ClamAV (antivirus seulement)
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq3"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>4️⃣ Quelle technique permet de masquer l'URL réelle dans une email?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq4" value="a">
+                                    Header Spoofing
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq4" value="b">
+                                    URL Obfuscation (encoding, IP décimal, subdomains)
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq4" value="c">
+                                    DKIM Signature
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq4"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>5️⃣ Quel KPI mesure le % d'utilisateurs qui signalent les emails suspects?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq5" value="a">
+                                    False Positive Rate
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq5" value="b">
+                                    User Report Rate
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq5" value="c">
+                                    Detection Rate
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq5"></div>
+                        </div>
+                    </form>
+
+                    <div class="button-group" id="it-quiz-buttons"></div>
+                </section>`,
+                en: `<section class="section active it">
+                    <h2>🧠 IT Specialist Quiz - Knowledge Check</h2>
+                    <p style="margin-bottom: 30px;">Test your technical knowledge! Answer the questions correctly.</p>
+                    <form id="it-quiz">
+                        <div class="quiz-question">
+                            <h4>1️⃣ Which protocol verifies that the server IP is authorized to send emails?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq1" value="a">
+                                    DKIM
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq1" value="b">
+                                    SPF (Sender Policy Framework)
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq1" value="c">
+                                    DMARC
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq1"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>2️⃣ Which DMARC policy rejects emails that fail SPF and DKIM?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq2" value="a">
+                                    p=none
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq2" value="b">
+                                    p=quarantine
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq2" value="c">
+                                    p=reject
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq2"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>3️⃣ Which open-source tool is recommended for email filtering?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq3" value="a">
+                                    rspamd or SpamAssassin
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq3" value="b">
+                                    Postfix (MTA only)
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq3" value="c">
+                                    ClamAV (antivirus only)
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq3"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>4️⃣ Which technique allows hiding the real URL in an email?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq4" value="a">
+                                    Header Spoofing
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq4" value="b">
+                                    URL Obfuscation (encoding, decimal IP, subdomains)
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq4" value="c">
+                                    DKIM Signature
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq4"></div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>5️⃣ Which KPI measures the % of users who report suspicious emails?</h4>
+                            <div class="quiz-options">
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq5" value="a">
+                                    False Positive Rate
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq5" value="b">
+                                    User Report Rate
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="iq5" value="c">
+                                    Detection Rate
+                                </label>
+                            </div>
+                            <div class="feedback" id="feedback-iq5"></div>
+                        </div>
+                    </form>
+
+                    <div class="button-group" id="it-quiz-buttons"></div>
+                </section>`
+            }
+        ];
+
+        // Initialize
+        updateTranslations();
+    </script>
+</body>
+</html>
