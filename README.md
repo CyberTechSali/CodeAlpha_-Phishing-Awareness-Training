@@ -1,108 +1,133 @@
-# CodeAlpha_-Phishing-Awareness-Training
 # 🛡️ Phishing Awareness Training
 
-Module de formation interactif et bilingue (Français / English) de sensibilisation aux attaques de phishing, conçu pour deux publics distincts : **employés** (non-techniques) et **spécialistes IT** (techniques).
+An interactive, bilingual (French / English) phishing awareness training module designed for two distinct audiences: **Employees** (non-technical users) and **IT Specialists** (technical professionals).
 
-🔗 **Démo en ligne :** _[à ajouter une fois GitHub Pages activé]_
-
----
-
-## 📋 Description du projet
-
-**Task 2 : Phishing Awareness Training**
-
-Ce projet répond aux objectifs suivants :
-
-- ✅ Créer un module de formation en ligne interactif sur les attaques de phishing
-- ✅ Expliquer comment reconnaître les emails de phishing et les faux sites web
-- ✅ Sensibiliser aux tactiques d'ingénierie sociale utilisées par les attaquants
-- ✅ Fournir des bonnes pratiques et conseils pour éviter d'en être victime
-- ✅ Inclure des exemples concrets et des quiz interactifs pour un meilleur engagement
+🔗 **Live Demo:** *To be added once GitHub Pages is enabled.*
 
 ---
 
-## ✨ Fonctionnalités
+# 📋 Project Description
 
-- **Deux parcours de formation** adaptés au public :
-  - 👤 **Employé** — langage simple et vulgarisé (5-15 min)
-  - ⚙️ **IT Spécialiste** — approche technique avancée (10-25 min)
-- **Support bilingue** Français / English (bouton de bascule en temps réel)
-- **Contenu structuré en sections progressives** avec barre de progression
-- **Exemples concrets** : emails suspects, faux domaines, URLs obfusquées, en-têtes SMTP falsifiés
-- **Quiz interactif** de validation des connaissances à la fin de chaque parcours
-- **Design responsive** (mobile / desktop)
-- **Aucune dépendance externe** — HTML/CSS/JS pur, fonctionne hors-ligne
+**Task 2: Phishing Awareness Training**
 
----
+This project meets the following objectives:
 
-## 🧑‍🤝‍🧑 Contenu du parcours Employé
-
-1. Qu'est-ce que le phishing ?
-2. Reconnaître les emails de phishing (5 signes d'alerte)
-3. Identifier les faux sites web (URL, cadenas HTTPS)
-4. L'ingénierie sociale (urgence, usurpation d'identité, pièces jointes)
-5. Quiz de vérification (5 questions)
-
-## ⚙️ Contenu du parcours IT Spécialiste
-
-1. Architecture anti-phishing (SPF, DKIM, DMARC)
-2. Analyse technique des vecteurs d'attaque (header spoofing, typosquatting, URL obfuscation)
-3. Implémentation des solutions (stack de sécurité, configuration rspamd)
-4. Monitoring et Incident Response (KPIs, forensics, escalade)
-5. Quiz technique de vérification (5 questions)
+* ✅ Develop an interactive online training module on phishing attacks.
+* ✅ Explain how to identify phishing emails and fraudulent websites.
+* ✅ Raise awareness of social engineering techniques used by cybercriminals.
+* ✅ Provide practical security tips and best practices to avoid phishing attacks.
+* ✅ Include real-world examples and interactive quizzes to improve user engagement.
 
 ---
 
-## 🚀 Installation et utilisation
+# ✨ Features
 
-### Option 1 — Ouvrir directement
+* **Two learning paths** tailored to different audiences:
 
-Télécharge le fichier `index.html` et ouvre-le dans n'importe quel navigateur moderne (Chrome, Firefox, Edge, Safari).
+  * 👤 **Employee** — Simple, beginner-friendly content (5–15 minutes)
+  * ⚙️ **IT Specialist** — Advanced technical training (10–25 minutes)
+* **Bilingual support** (French / English) with real-time language switching
+* **Progressive learning structure** with a visual progress bar
+* **Real-world examples**, including:
 
-### Option 2 — Cloner le dépôt
+  * Suspicious phishing emails
+  * Fake domains
+  * Obfuscated URLs
+  * Forged SMTP email headers
+* **Interactive quizzes** at the end of each learning path
+* **Responsive design** optimized for desktop and mobile devices
+* **No external dependencies** — Built with pure HTML, CSS, and JavaScript, and fully functional offline
+
+---
+
+# 👤 Employee Learning Path
+
+1. What is phishing?
+2. Recognizing phishing emails (5 warning signs)
+3. Identifying fake websites (URLs, HTTPS padlock, domain verification)
+4. Social engineering techniques (urgency, impersonation, malicious attachments)
+5. Knowledge assessment quiz (5 questions)
+
+---
+
+# ⚙️ IT Specialist Learning Path
+
+1. Anti-phishing architecture (SPF, DKIM, DMARC)
+2. Technical analysis of attack vectors
+
+   * Header spoofing
+   * Typosquatting
+   * URL obfuscation
+3. Security implementation
+
+   * Email security stack
+   * Rspamd configuration
+4. Monitoring and Incident Response
+
+   * KPIs
+   * Email forensics
+   * Incident escalation
+5. Technical assessment quiz (5 questions)
+
+---
+
+# 🚀 Installation & Usage
+
+## Option 1 — Open Directly
+
+Download the `index.html` file and open it in any modern web browser (Chrome, Firefox, Edge, or Safari).
+
+## Option 2 — Clone the Repository
 
 ```bash
-git clone https://github.com/TON-USERNAME/phishing-awareness-training.git
+git clone https://github.com/YOUR-USERNAME/phishing-awareness-training.git
 cd phishing-awareness-training
 ```
 
-Puis ouvre `index.html` dans ton navigateur.
+Then open `index.html` in your browser.
 
-### Option 3 — Héberger avec GitHub Pages
+## Option 3 — Deploy with GitHub Pages
 
-1. Va dans **Settings** du repo → **Pages**
-2. Source : branche `main`, dossier `/root`
-3. Le module sera accessible à `https://ton-username.github.io/phishing-awareness-training/`
-
----
-
-## 🛠️ Stack technique
-
-- HTML5
-- CSS3 (variables CSS, animations, design responsive)
-- JavaScript (Vanilla JS, aucune librairie)
-
-Aucune installation, build ou dépendance requise.
-
----
-
-## 📁 Structure du projet
+1. Go to your repository **Settings** → **Pages**
+2. Select the **main** branch and the **/root** folder as the source
+3. Your training module will be available at:
 
 ```
+https://your-username.github.io/phishing-awareness-training/
+```
+
+---
+
+# 🛠️ Technology Stack
+
+* HTML5
+* CSS3 (CSS variables, animations, responsive design)
+* Vanilla JavaScript (no frameworks or external libraries)
+
+No installation, build process, or additional dependencies are required.
+
+---
+
+# 📁 Project Structure
+
+```text
 phishing-awareness-training/
-├── index.html      # Module de formation complet (tout-en-un)
-└── README.md        # Ce fichier
+├── index.html      # Complete all-in-one training module
+└── README.md       # Project documentation
 ```
 
 ---
 
-## 👤 Auteur
+# 👤 Author
 
 **Salma Ouchahed**
-GitHub: [@CyberTechSali](https://github.com/CyberTechSali)
+
+GitHub: **[@CyberTechSali](https://github.com/CyberTechSali)**
 
 ---
 
-## 📄 Licence
+# 📄 License
 
-© 2026 Advanced Phishing Awareness Training Platform. Projet réalisé à des fins éducatives / formation à la cybersécurité.
+© 2026 Advanced Phishing Awareness Training Platform.
+
+This project was developed for **educational purposes** and **cybersecurity awareness training**.
