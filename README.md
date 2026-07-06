@@ -1,22 +1,23 @@
-# 🛡️ Phishing Awareness Training
+# 🛡️ CodeAlpha - Phishing Awareness Training
 
 An interactive, bilingual (French / English) phishing awareness training module designed for two distinct audiences: **Employees** (non-technical users) and **IT Specialists** (technical professionals).
 
+🔗 **Repository:** https://github.com/CyberTechSali/CodeAlpha_-Phishing-Awareness-Training
 🔗 **Live Demo:** *To be added once GitHub Pages is enabled.*
 
 ---
 
 # 📋 Project Description
 
-**Task 2: Phishing Awareness Training**
+**Task 2: Phishing Awareness Training** — developed as part of the **CodeAlpha Cyber Security Internship Program**.
 
-This project meets the following objectives:
+This project fulfills the following objectives:
 
 * ✅ Develop an interactive online training module on phishing attacks.
 * ✅ Explain how to identify phishing emails and fraudulent websites.
 * ✅ Raise awareness of social engineering techniques used by cybercriminals.
-* ✅ Provide practical security tips and best practices to avoid phishing attacks.
-* ✅ Include real-world examples and interactive quizzes to improve user engagement.
+* ✅ Provide practical security tips and best practices to help users avoid phishing attacks.
+* ✅ Include real-world examples and interactive quizzes to improve learner engagement.
 
 ---
 
@@ -36,7 +37,7 @@ This project meets the following objectives:
   * Forged SMTP email headers
 * **Interactive quizzes** at the end of each learning path
 * **Responsive design** optimized for desktop and mobile devices
-* **No external dependencies** — Built with pure HTML, CSS, and JavaScript, and fully functional offline
+* **No external dependencies** — Built with pure HTML, CSS, and Vanilla JavaScript, and fully functional offline.
 
 ---
 
@@ -44,7 +45,7 @@ This project meets the following objectives:
 
 1. What is phishing?
 2. Recognizing phishing emails (5 warning signs)
-3. Identifying fake websites (URLs, HTTPS padlock, domain verification)
+3. Identifying fake websites (URLs, HTTPS padlock, and domain verification)
 4. Social engineering techniques (urgency, impersonation, malicious attachments)
 5. Knowledge assessment quiz (5 questions)
 
@@ -80,20 +81,20 @@ Download the `index.html` file and open it in any modern web browser (Chrome, Fi
 ## Option 2 — Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/phishing-awareness-training.git
-cd phishing-awareness-training
+git clone https://github.com/CyberTechSali/CodeAlpha_-Phishing-Awareness-Training.git
+cd CodeAlpha_-Phishing-Awareness-Training
 ```
 
-Then open `index.html` in your browser.
+Then open `index.html` in your preferred browser.
 
 ## Option 3 — Deploy with GitHub Pages
 
 1. Go to your repository **Settings** → **Pages**
-2. Select the **main** branch and the **/root** folder as the source
-3. Your training module will be available at:
+2. Select the **main** branch and the **/root** folder as the source.
+3. Your training platform will be available at:
 
 ```
-https://your-username.github.io/phishing-awareness-training/
+https://cybertechsali.github.io/CodeAlpha_-Phishing-Awareness-Training/
 ```
 
 ---
@@ -111,7 +112,7 @@ No installation, build process, or additional dependencies are required.
 # 📁 Project Structure
 
 ```text
-phishing-awareness-training/
+CodeAlpha_-Phishing-Awareness-Training/
 ├── index.html      # Complete all-in-one training module
 └── README.md       # Project documentation
 ```
@@ -122,12 +123,12 @@ phishing-awareness-training/
 
 **Salma Ouchahed**
 
-GitHub: **[@CyberTechSali](https://github.com/CyberTechSali)**
+GitHub: **https://github.com/CyberTechSali**
 
 ---
 
 # 📄 License
 
-© 2026 Advanced Phishing Awareness Training Platform.
+© 2026 CodeAlpha – Phishing Awareness Training.
 
-This project was developed for **educational purposes** and **cybersecurity awareness training**.
+Developed for educational purposes as part of the **CodeAlpha Cyber Security Internship Program**. This project aims to promote cybersecurity awareness and phishing prevention through interactive learning.
