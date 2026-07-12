@@ -82,7 +82,9 @@ completion certificate.
 ## 🚀 Running Locally
 
 No installation required:
+
 git clone https://cybertechsali.github.io/CodeAlpha_-Phishing-Awareness-Training/
+
 cd interactive-phishing-awareness-training
 
 Just open `index.html` in your browser.
