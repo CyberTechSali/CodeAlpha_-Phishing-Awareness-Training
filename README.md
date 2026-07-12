@@ -14,18 +14,31 @@ completion certificate.
 <table>
   <tr>
     <td align="center"><b>Home Screen</b></td>
-    <td align="center"><b>Generated Certificate</b></td>
   </tr>
   <tr>
-    <td><img src="assets/screenshots/home.png" width="400"/></td>
-    <td><img src="assets/screenshots/certificate.png" width="400"/></td>
+    <td align="center"><img src="assets/screenshots/home.png" width="700"/></td>
   </tr>
   <tr>
     <td align="center">Choose your level and enter your name</td>
-    <td align="center">Auto-generated, personalized certificate with score</td>
   </tr>
 </table>
 
+<br>
+
+<table>
+  <tr>
+    <td align="center"><b>Employee Certificate</b></td>
+    <td align="center"><b>IT Specialist Certificate</b></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/certificate-employee.png" width="400"/></td>
+    <td><img src="assets/screenshots/certificate-it.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center">Awarded after completing the Employee track</td>
+    <td align="center">Awarded after completing the IT Specialist track</td>
+  </tr>
+</table>
 ---
 
 ## ✨ Features
