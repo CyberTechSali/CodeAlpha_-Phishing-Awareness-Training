@@ -5,7 +5,7 @@ training platform, featuring two tailored learning paths
 (Employee / IT Specialist), a scored quiz, and a shareable
 completion certificate.
 
-🔗 **[Try the live demo](https://your-username.github.io/interactive-phishing-awareness-training/)**
+🔗 **[Try the live demo](https://cybertechsali.github.io/CodeAlpha_-Phishing-Awareness-Training/)**
 
 ---
 
