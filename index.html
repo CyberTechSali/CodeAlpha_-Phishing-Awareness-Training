@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Phishing Awareness Training | Formation Avancée Anti-Phishing</title>
+    <title>Interactive Phishing Awareness Training Platform</title>
     <style>
         * {
             margin: 0;
@@ -578,6 +578,176 @@
             background: var(--primary-it);
         }
 
+        .score-label {
+            font-size: 0.28em;
+            font-weight: 600;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .btn-linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0A66C2;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+        }
+
+        .btn-linkedin:hover {
+            background: #084d94;
+            transform: translateY(-2px);
+        }
+
+        .btn-retry {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .name-input-wrapper {
+            max-width: 420px;
+            margin: 25px auto 0;
+            text-align: left;
+        }
+
+        .name-input-wrapper label {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .name-input-wrapper input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1em;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .name-input-wrapper input:focus {
+            border-color: var(--primary-it);
+        }
+
+        .certificate-preview {
+            max-width: 100%;
+            width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin: 20px auto;
+            display: block;
+        }
+
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            padding: 12px 18px;
+        }
+
+        .btn-icon:hover {
+            background: var(--border-color);
+        }
+
+        .btn-download {
+            background: var(--text-dark);
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #111827;
+            transform: translateY(-2px);
+        }
+
+        .copy-feedback {
+            font-size: 0.85em;
+            color: var(--success);
+            font-weight: 600;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .copy-feedback.show {
+            display: block;
+        }
+
+        .copy-field {
+            max-width: 500px;
+            margin: 20px auto 0;
+            text-align: left;
+        }
+
+        .copy-field label {
+            display: block;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .copy-field-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .copy-field-row input {
+            flex: 1;
+            min-width: 0;
+            padding: 10px 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9em;
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .copy-field-row .btn-icon {
+            padding: 10px 16px;
+            white-space: nowrap;
+            font-size: 0.9em;
+        }
+
+        .app-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #1F2937;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 0.95em;
+            font-weight: 600;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+
+        .app-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .logo-section h1 {
@@ -654,8 +824,13 @@
         <div class="home-screen" id="home-screen">
             <div class="logo-section">
                 <h1>🛡️ Phishing Awareness</h1>
-                <p id="home-title">Formation Avancée: Protégez-vous contre le Phishing</p>
+                <p id="home-title">Interactive Phishing Awareness Training Platform</p>
                 <p class="subtitle" id="home-subtitle">Choisissez votre niveau et apprenez à identifier les menaces</p>
+
+                <div class="name-input-wrapper">
+                    <label for="user-fullname" id="name-label">👤 Votre nom complet (pour votre certificat)</label>
+                    <input type="text" id="user-fullname" placeholder="Ex: Jean Dupont" autocomplete="name">
+                </div>
             </div>
 
             <div class="selection-cards">
@@ -705,13 +880,18 @@
     <!-- Footer -->
     <footer>
         <p>Author: <strong>Salma Ouchahed</strong> | GitHub: <strong>@CyberTechSali</strong></p>
-        <p style="font-size: 0.85em;">Advanced Phishing Awareness Training Platform © 2026</p>
+        <p style="font-size: 0.85em;">Interactive Phishing Awareness Training Platform © 2026</p>
     </footer>
 
     <script>
         let currentLanguage = 'fr';
         let currentLevel = null;
         let currentSection = 0;
+        let lastScorePercent = 0;
+        let lastScoreCount = 0;
+        let userFullName = '';
+        const TOTAL_QUESTIONS = 5;
+        const PASS_THRESHOLD = 70; // % minimum requis pour valider la formation
 
         const correctAnswers = {
             employee: { eq1: 'b', eq2: 'b', eq3: 'b', eq4: 'b', eq5: 'b' },
@@ -721,7 +901,7 @@
         const translations = {
             fr: {
                 // Home
-                'home-title': 'Formation Avancée: Protégez-vous contre le Phishing',
+                'home-title': 'Interactive Phishing Awareness Training Platform',
                 'home-subtitle': 'Choisissez votre niveau et apprenez à identifier les menaces',
                 'employee-title': 'Employé',
                 'employee-level': 'Pour tous',
@@ -731,10 +911,11 @@
                 'it-level': 'Technique',
                 'it-desc': 'Approche technique avancée. Protocoles, détection, infrastructure et stratégies de défense.',
                 'it-duration': '⏱️ Durée : 10-25 minutes',
+                'name-label': '👤 Votre nom complet (pour votre certificat)',
             },
             en: {
                 // Home
-                'home-title': 'Advanced Training: Protect Yourself Against Phishing',
+                'home-title': 'Interactive Phishing Awareness Training Platform',
                 'home-subtitle': 'Choose your level and learn to identify threats',
                 'employee-title': 'Employee',
                 'employee-level': 'For Everyone',
@@ -744,6 +925,7 @@
                 'it-level': 'Technical',
                 'it-desc': 'Advanced technical approach. Protocols, detection, infrastructure and defense strategies.',
                 'it-duration': '⏱️ Duration: 10-25 minutes',
+                'name-label': '👤 Your full name (for your certificate)',
             }
         };
 
@@ -770,6 +952,18 @@
         }
 
         function startTraining(level) {
+            const nameInput = document.getElementById('user-fullname');
+            const name = nameInput.value.trim();
+
+            if (!name) {
+                alert(currentLanguage === 'fr'
+                    ? 'Veuillez entrer votre nom complet avant de commencer (il servira pour votre certificat).'
+                    : 'Please enter your full name before starting (it will be used for your certificate).');
+                nameInput.focus();
+                return;
+            }
+
+            userFullName = name;
             currentLevel = level;
             currentSection = 0;
             document.getElementById('home-screen').classList.add('hidden');
@@ -852,11 +1046,11 @@
         function validateQuiz() {
             const answers = currentLevel === 'employee' ? correctAnswers.employee : correctAnswers.it;
             const prefix = currentLevel === 'employee' ? 'eq' : 'iq';
-            
-            let allCorrect = true;
+
+            let allAnswered = true;
             let score = 0;
 
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
                 const questionId = prefix + i;
                 const selected = document.querySelector(`input[name="${questionId}"]:checked`);
                 const feedbackElement = document.getElementById(`feedback-${questionId}`);
@@ -866,7 +1060,7 @@
                         ? 'Veuillez répondre à cette question.' 
                         : 'Please answer this question.';
                     feedbackElement.className = 'feedback show incorrect';
-                    allCorrect = false;
+                    allAnswered = false;
                 } else if (selected.value === answers[questionId]) {
                     feedbackElement.textContent = '✓ ' + (currentLanguage === 'fr' ? 'Correct!' : 'Correct!');
                     feedbackElement.className = 'feedback show correct';
@@ -876,19 +1070,30 @@
                         ? 'Incorrect. Relisez la section.' 
                         : 'Incorrect. Review the section.');
                     feedbackElement.className = 'feedback show incorrect';
-                    allCorrect = false;
                 }
             }
 
-            if (!allCorrect) {
+            if (!allAnswered) {
                 alert(currentLanguage === 'fr'
-                    ? 'Vous devez répondre correctement à toutes les questions!'
-                    : 'You must answer all questions correctly!');
+                    ? 'Veuillez répondre à toutes les questions avant de valider.'
+                    : 'Please answer all questions before submitting.');
                 window.scrollTo(0, 0);
                 return;
             }
 
-            // Quiz passed - show results
+            const percent = Math.round((score / TOTAL_QUESTIONS) * 100);
+            lastScorePercent = percent;
+            lastScoreCount = score;
+
+            if (percent < PASS_THRESHOLD) {
+                alert(currentLanguage === 'fr'
+                    ? `Votre score est de ${percent}%. Le minimum requis est ${PASS_THRESHOLD}%. Relisez les sections et réessayez!`
+                    : `Your score is ${percent}%. The minimum required is ${PASS_THRESHOLD}%. Review the sections and try again!`);
+                window.scrollTo(0, 0);
+                return;
+            }
+
+            // Quiz passed (score >= threshold) - show results
             const content = currentLevel === 'employee' ? employeeContent : itContent;
             currentSection = content.length; // Move to results
             showResults();
@@ -918,16 +1123,372 @@
             
             document.getElementById('content').innerHTML = resultHtml;
             updateNavigationButtons();
+            renderCertificate(currentLevel);
+        }
+
+        // ----- Certificate generation (canvas image) -----
+        function renderCertificate(level) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 630;
+            const ctx = canvas.getContext('2d');
+
+            const isEmployee = level === 'employee';
+            const colorA = isEmployee ? '#10B981' : '#3B82F6';
+            const colorB = isEmployee ? '#065F46' : '#1E3A8A';
+            const gold = '#C9A227';
+
+            // ----- Fond dégradé avec motif décoratif -----
+            const bgGrad = ctx.createLinearGradient(0, 0, 1200, 630);
+            bgGrad.addColorStop(0, colorB);
+            bgGrad.addColorStop(1, colorA);
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            // Motif de fond: cercles translucides façon "filigrane"
+            ctx.save();
+            ctx.globalAlpha = 0.07;
+            ctx.fillStyle = '#FFFFFF';
+            for (let i = 0; i < 6; i++) {
+                ctx.beginPath();
+                ctx.arc(100 + i * 220, 40, 90, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(50 + i * 220, 610, 70, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.restore();
+
+            // ----- Carte blanche centrale -----
+            ctx.save();
+            ctx.shadowColor = 'rgba(0,0,0,0.25)';
+            ctx.shadowBlur = 30;
+            ctx.shadowOffsetY = 10;
+            ctx.fillStyle = '#FFFFFF';
+            roundRect(ctx, 55, 45, 1090, 540, 20);
+            ctx.fill();
+            ctx.restore();
+
+            // Double cadre décoratif (extérieur fin coloré + intérieur doré fin)
+            ctx.strokeStyle = colorA;
+            ctx.lineWidth = 3;
+            roundRect(ctx, 55, 45, 1090, 540, 20);
+            ctx.stroke();
+
+            ctx.strokeStyle = gold;
+            ctx.lineWidth = 1.5;
+            roundRect(ctx, 78, 68, 1044, 494, 12);
+            ctx.stroke();
+
+            // Petits ornements dans les 4 coins du cadre intérieur
+            drawCornerOrnament(ctx, 78, 68, 1, 1, gold);
+            drawCornerOrnament(ctx, 1122, 68, -1, 1, gold);
+            drawCornerOrnament(ctx, 78, 562, 1, -1, gold);
+            drawCornerOrnament(ctx, 1122, 562, -1, -1, gold);
+
+            ctx.textAlign = 'center';
+
+            // ----- Bandeau supérieur "CERTIFICATE" -----
+            ctx.fillStyle = gold;
+            ctx.font = '600 15px Georgia, serif';
+            const eyebrow = currentLanguage === 'fr' ? 'C E R T I F I C A T   D E   R É U S S I T E' : 'C E R T I F I C A T E   O F   C O M P L E T I O N';
+            ctx.fillText(eyebrow, 600, 128);
+
+            // Icône bouclier
+            ctx.font = '58px sans-serif';
+            ctx.fillText('🛡️', 600, 205);
+
+            // Titre principal (serif, style diplôme)
+            ctx.fillStyle = '#1F2937';
+            ctx.font = 'bold 29px Georgia, serif';
+            const titleText = 'Interactive Phishing Awareness Training Platform';
+            ctx.fillText(titleText, 600, 250);
+
+            // "Décerné à" / "Awarded to"
+            ctx.font = 'italic 20px Georgia, serif';
+            ctx.fillStyle = '#6B7280';
+            ctx.fillText(currentLanguage === 'fr' ? 'décerné à' : 'awarded to', 600, 288);
+
+            // Nom du participant (élément central, grande taille)
+            ctx.font = 'bold 54px Georgia, serif';
+            ctx.fillStyle = colorB;
+            const displayName = userFullName || (currentLanguage === 'fr' ? 'Participant' : 'Participant');
+            ctx.fillText(displayName, 600, 350);
+
+            // Petite ligne décorative sous le nom
+            ctx.strokeStyle = gold;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(500, 372);
+            ctx.lineTo(700, 372);
+            ctx.stroke();
+
+            // Description niveau
+            ctx.font = '22px Georgia, serif';
+            ctx.fillStyle = '#374151';
+            const subText = currentLanguage === 'fr'
+                ? `Niveau ${isEmployee ? 'Employé' : 'IT Spécialiste'} — a démontré sa maîtrise des bonnes pratiques anti-phishing`
+                : `${isEmployee ? 'Employee' : 'IT Specialist'} Level — has demonstrated mastery of anti-phishing best practices`;
+            ctx.fillText(subText, 600, 408);
+
+            // ----- Ligne du bas: date | médaillon score | signature -----
+            const today = new Date();
+            const dateStr = today.toLocaleDateString(currentLanguage === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            ctx.textAlign = 'left';
+            ctx.font = '15px Georgia, serif';
+            ctx.fillStyle = '#9CA3AF';
+            ctx.fillText(currentLanguage === 'fr' ? 'Délivré le' : 'Issued on', 150, 500);
+            ctx.font = '600 17px Georgia, serif';
+            ctx.fillStyle = '#374151';
+            ctx.fillText(dateStr, 150, 522);
+
+            ctx.textAlign = 'right';
+            ctx.font = 'italic 17px Georgia, serif';
+            ctx.fillStyle = '#374151';
+            ctx.font = 'italic 15px Georgia, serif';
+            ctx.fillText('Interactive Phishing Awareness', 1050, 500);
+            ctx.strokeStyle = '#D1D5DB';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(880, 512);
+            ctx.lineTo(1050, 512);
+            ctx.stroke();
+            ctx.font = '13px Georgia, serif';
+            ctx.fillStyle = '#9CA3AF';
+            ctx.fillText(currentLanguage === 'fr' ? 'Plateforme de sensibilisation' : 'Awareness platform', 1050, 528);
+
+            // Médaillon central du score
+            ctx.textAlign = 'center';
+            const medalGrad = ctx.createRadialGradient(600, 495, 5, 600, 495, 62);
+            medalGrad.addColorStop(0, colorA);
+            medalGrad.addColorStop(1, colorB);
+            ctx.beginPath();
+            ctx.arc(600, 495, 60, 0, Math.PI * 2);
+            ctx.fillStyle = medalGrad;
+            ctx.fill();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = gold;
+            ctx.beginPath();
+            ctx.arc(600, 495, 60, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(600, 495, 68, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(201,162,39,0.4)';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 32px Georgia, serif';
+            ctx.fillText(lastScorePercent + '%', 600, 503);
+            ctx.font = '13px Georgia, serif';
+            ctx.fillText(`${lastScoreCount}/${TOTAL_QUESTIONS}`, 600, 520);
+
+            const dataUrl = canvas.toDataURL('image/png');
+            const img = document.getElementById('certificate-img');
+            if (img) img.src = dataUrl;
+            window.__certificateDataUrl = dataUrl;
+
+            // Pré-remplir le champ du lien du quiz
+            const linkInput = document.getElementById('quiz-link-input');
+            if (linkInput) linkInput.value = window.location.href;
+        }
+
+        function roundRect(ctx, x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+        }
+
+        // Petit ornement décoratif en forme de coin (façon diplôme), dx/dy indiquent la direction
+        function drawCornerOrnament(ctx, x, y, dx, dy, color) {
+            ctx.save();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            const len = 26;
+            ctx.beginPath();
+            ctx.moveTo(x, y + dy * len);
+            ctx.lineTo(x, y);
+            ctx.lineTo(x + dx * len, y);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(x + dx * 10, y + dy * 10, 3, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function showToast(message, duration = 3500) {
+            let toast = document.getElementById('app-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'app-toast';
+                toast.className = 'app-toast';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(window.__toastTimeout);
+            window.__toastTimeout = setTimeout(() => toast.classList.remove('show'), duration);
+        }
+
+        function dataUrlToFile(dataUrl, filename) {
+            const arr = dataUrl.split(',');
+            const mime = arr[0].match(/:(.*?);/)[1];
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, { type: mime });
+        }
+
+        function buildShareText(level) {
+            const levelLabelFr = level === 'employee' ? 'Employé' : 'IT Spécialiste';
+            const levelLabelEn = level === 'employee' ? 'Employee' : 'IT Specialist';
+            return currentLanguage === 'fr'
+                ? `${userFullName} vient de terminer l'Interactive Phishing Awareness Training Platform (Niveau ${levelLabelFr}) avec un score de ${lastScorePercent}% (${lastScoreCount}/${TOTAL_QUESTIONS})! 🛡️ #CyberSécurité #Phishing #Formation`
+                : `${userFullName} just completed the Interactive Phishing Awareness Training Platform (${levelLabelEn} Level) with a score of ${lastScorePercent}% (${lastScoreCount}/${TOTAL_QUESTIONS})! 🛡️ #CyberSecurity #Phishing #Training`;
+        }
+
+        // Copie robuste: essaie l'API Clipboard, puis execCommand, et sélectionne toujours
+        // le texte dans le champ pour permettre un Ctrl+C manuel en dernier recours.
+        function copyTextRobust(text, inputEl, feedbackEl) {
+            const finish = (ok) => {
+                if (feedbackEl) {
+                    feedbackEl.textContent = ok
+                        ? (currentLanguage === 'fr' ? '✓ Copié!' : '✓ Copied!')
+                        : (currentLanguage === 'fr' ? 'Sélectionné - faites Ctrl+C (ou Cmd+C)' : 'Selected - press Ctrl+C (or Cmd+C)');
+                    feedbackEl.classList.add('show');
+                    setTimeout(() => feedbackEl.classList.remove('show'), 3000);
+                }
+            };
+
+            if (inputEl) {
+                inputEl.value = text;
+                inputEl.removeAttribute('readonly');
+                inputEl.focus();
+                inputEl.select();
+                inputEl.setSelectionRange(0, text.length);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => finish(true)).catch(() => {
+                    try {
+                        const ok = document.execCommand('copy');
+                        finish(ok);
+                    } catch (e) {
+                        finish(false);
+                    }
+                });
+            } else {
+                try {
+                    const ok = document.execCommand('copy');
+                    finish(ok);
+                } catch (e) {
+                    finish(false);
+                }
+            }
+        }
+
+        function copyQuizLink() {
+            const url = window.location.href;
+            const input = document.getElementById('quiz-link-input');
+            const feedback = document.getElementById('copy-link-feedback');
+            copyTextRobust(url, input, feedback);
+        }
+
+        // Téléchargement robuste: tente le téléchargement direct, ET ouvre systématiquement
+        // l'image dans un nouvel onglet pour permettre un enregistrement manuel (clic droit >
+        // Enregistrer l'image sous...) si le téléchargement automatique est bloqué (aperçu en iframe).
+        function downloadCertificate(silent) {
+            const dataUrl = window.__certificateDataUrl;
+            if (!dataUrl) return;
+
+            try {
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = 'certificat-phishing-' + (userFullName || 'participant').replace(/\s+/g, '-').toLowerCase() + '.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (e) {
+                // ignore, le repli ci-dessous prend le relais
+            }
+
+            if (silent) return;
+
+            // Le clic ci-dessus peut échouer silencieusement (sans exception) dans un aperçu en
+            // iframe. On propose donc systématiquement l'ouverture dans un nouvel onglet en secours,
+            // pour un enregistrement manuel garanti (clic droit > Enregistrer l'image sous...).
+            const newTab = window.open();
+            if (newTab) {
+                newTab.document.write(
+                    '<title>Certificat</title><body style="margin:0;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;">' +
+                    '<img src="' + dataUrl + '" style="max-width:100%;height:auto;" />' +
+                    '</body>'
+                );
+                showToast(currentLanguage === 'fr'
+                    ? '✓ Téléchargement lancé — l\'image s\'ouvre aussi dans un nouvel onglet au cas où'
+                    : '✓ Download started — the image also opened in a new tab just in case');
+            } else {
+                showToast(currentLanguage === 'fr'
+                    ? 'Clic droit sur l\'image du certificat puis "Enregistrer l\'image sous..."'
+                    : 'Right-click the certificate image then "Save image as..."');
+            }
+        }
+
+        async function shareOnLinkedIn(level) {
+            const text = buildShareText(level);
+            const dataUrl = window.__certificateDataUrl;
+
+            // Tentative de partage natif avec l'image directement attachée (le plus automatique):
+            // fonctionne sur mobile et plusieurs navigateurs desktop récents. L'utilisateur choisit
+            // LinkedIn dans la fenêtre de partage native, le certificat + le texte sont déjà prêts,
+            // il ne reste qu'à appuyer sur "Publier".
+            if (dataUrl && navigator.canShare) {
+                try {
+                    const file = dataUrlToFile(dataUrl, 'certificat-phishing.png');
+                    if (navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            files: [file],
+                            title: currentLanguage === 'fr' ? 'Mon certificat anti-phishing' : 'My anti-phishing certificate',
+                            text: text
+                        });
+                        return;
+                    }
+                } catch (err) {
+                    // Partage annulé ou échoué : on continue avec le repli ci-dessous
+                }
+            }
+
+            // Repli (desktop sans partage natif) : LinkedIn ne permet pas de publier un post
+            // automatiquement depuis un site externe sans son API officielle. On prépare donc tout
+            // silencieusement (texte copié + certificat téléchargé) puis on ouvre LinkedIn directement
+            // sur l'écran de création de post.
+            copyTextRobust(text, null, null);
+            downloadCertificate(true);
+            window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank', 'noopener,noreferrer');
+
+            showToast(currentLanguage === 'fr'
+                ? '✓ Certificat téléchargé et texte copié — collez (Ctrl+V) et ajoutez l\'image dans LinkedIn'
+                : '✓ Certificate downloaded and text copied — paste (Ctrl+V) and attach the image in LinkedIn', 5000);
         }
 
         function getEmployeeResults() {
             const badge = currentLanguage === 'fr'
                 ? '✓ Formation Complétée - Niveau Employé'
                 : '✓ Training Completed - Employee Level';
-            
+
             return `
                 <div class="results">
-                    <div class="score-circle employee">✓</div>
+                    <div class="score-circle employee">${lastScorePercent}%<span class="score-label">${lastScoreCount}/${TOTAL_QUESTIONS}</span></div>
                     <h3>${currentLanguage === 'fr' ? 'Bravo! 🎉' : 'Congratulations! 🎉'}</h3>
                     <p>${currentLanguage === 'fr' 
                         ? 'Vous avez complété la formation anti-phishing. Vous êtes maintenant conscient des risques et prêt à protéger vos données.'
@@ -940,6 +1501,7 @@
                             ? '✨ Rappelez-vous: Signalez toujours les emails suspects à votre responsable IT.'
                             : '✨ Remember: Always report suspicious emails to your IT manager.'}
                     </p>
+                    ${getResultsActionsHtml('employee')}
                 </div>
             `;
         }
@@ -948,10 +1510,10 @@
             const badge = currentLanguage === 'fr'
                 ? '✓ Formation Complétée - Niveau IT Spécialiste'
                 : '✓ Training Completed - IT Specialist Level';
-            
+
             return `
                 <div class="results">
-                    <div class="score-circle it">✓</div>
+                    <div class="score-circle it">${lastScorePercent}%<span class="score-label">${lastScoreCount}/${TOTAL_QUESTIONS}</span></div>
                     <h3>${currentLanguage === 'fr' ? 'Excellent! 🚀' : 'Excellent! 🚀'}</h3>
                     <p>${currentLanguage === 'fr' 
                         ? 'Vous avez complété la formation technique avancée. Vous maîtrisez maintenant les stratégies de défense et les outils de détection.'
@@ -964,8 +1526,43 @@
                             ? '🔒 Vous êtes prêt à implémenter et maintenir une infrastructure anti-phishing robuste.'
                             : '🔒 You are ready to implement and maintain a robust anti-phishing infrastructure.'}
                     </p>
+                    ${getResultsActionsHtml('it')}
                 </div>
             `;
+        }
+
+        function getResultsActionsHtml(level) {
+            const retryLabel = currentLanguage === 'fr' ? '↻ Refaire le quiz' : '↻ Retake quiz';
+            const downloadLabel = currentLanguage === 'fr' ? '📥 Télécharger le certificat' : '📥 Download certificate';
+            const copyLinkLabel = currentLanguage === 'fr' ? '🔗 Copier le lien du quiz' : '🔗 Copy quiz link';
+            const linkFieldLabel = currentLanguage === 'fr' ? 'Lien du quiz :' : 'Quiz link:';
+            return `
+                <img id="certificate-img" class="certificate-preview" alt="certificate" />
+                <div class="results-actions">
+                    <button class="btn-download" onclick="downloadCertificate()">${downloadLabel}</button>
+                    <button class="btn-linkedin" onclick="shareOnLinkedIn('${level}')">in Partager sur LinkedIn</button>
+                </div>
+
+                <div class="copy-field">
+                    <label>${linkFieldLabel}</label>
+                    <div class="copy-field-row">
+                        <input type="text" id="quiz-link-input" readonly>
+                        <button class="btn-icon" onclick="copyQuizLink()">${copyLinkLabel}</button>
+                    </div>
+                    <div class="copy-feedback" id="copy-link-feedback"></div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn-retry" onclick="retakeQuiz()">${retryLabel}</button>
+                </div>
+            `;
+        }
+
+        function retakeQuiz() {
+            const content = currentLevel === 'employee' ? employeeContent : itContent;
+            currentSection = content.length - 1; // back to quiz section
+            loadSection();
+            window.scrollTo(0, 0);
         }
 
         // EMPLOYEE CONTENT
